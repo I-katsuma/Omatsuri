@@ -7,12 +7,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public enum GAME_STATE
     {
-        WAIT,
+        TITLE,
         PLAYING,
         GAMEOVER,
         RESULT,
+        WAIT
     }
-
+    public GAME_STATE gameState = GAME_STATE.TITLE;
 
     private void Awake() 
     {
@@ -26,12 +27,37 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start() 
     {
-            
+        Init();
     }
 
-    void Init()
+    public void Init()
     {
+        gameState = GAME_STATE.TITLE;
+        AudioManager.Instance.PlayBGM(BGMSoundData.BGM.PLAYING);
+    }
 
+    public void StateChange(int num)
+    {
+        switch (num)
+        {
+            case 0:
+            gameState = GAME_STATE.TITLE;
+            break;
+            case 1:
+            gameState = GAME_STATE.PLAYING;
+            break;
+            case 2:
+            gameState = GAME_STATE.GAMEOVER;
+            break;
+            case 3:
+            gameState = GAME_STATE.RESULT;
+            break;
+
+            case 4:  
+            default:
+            gameState = GAME_STATE.WAIT;
+            break;
+        }
     }
 
 }

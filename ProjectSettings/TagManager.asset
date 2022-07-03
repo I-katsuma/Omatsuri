@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Objects
+    uniqueID: 4010426371
+    locked: 0
+  - name: Plate
+    uniqueID: 888778863
+    locked: 0
+  - name: Items
+    uniqueID: 843159799
+    locked: 0
+  - name: Player
+    uniqueID: 477199819
+    locked: 0
