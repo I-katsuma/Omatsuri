@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : SingletonMonoBehaviour<ScoreManager> 
 {
-    int maxScore = 9999;
+    int maxScore = 999;
     int score = 0;
 
     public int Score

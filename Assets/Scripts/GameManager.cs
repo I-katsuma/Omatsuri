@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
 
+    [Range(1f, 5f)]
+    public float mainGameSpeed = 1f;
+
     public enum GAME_STATE
     {
         TITLE,

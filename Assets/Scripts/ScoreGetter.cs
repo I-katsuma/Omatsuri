@@ -10,11 +10,11 @@ public class ScoreGetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text =  ScoreManager.Instance.Score.ToString("d5");
+        scoreText.text =  ScoreManager.Instance.Score.ToString("d3");
     }
 
     private void FixedUpdate() {
-        scoreText.text =  ScoreManager.Instance.Score.ToString("d5");
+        scoreText.text =  ScoreManager.Instance.Score.ToString("d3");
 
     }
 }
