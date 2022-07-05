@@ -7,12 +7,14 @@ public class ItemMove : MonoBehaviour
     private float startTime, distance;
     private Vector3 startPosition, targetPosition;
 
+    public float Yzahyo = 2.9f;
+
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
-        startPosition = transform.position; // 8.75 2.9
-        targetPosition = new Vector3(-8.75f, 2.9f, 0f);
+        startPosition = new Vector3(8.75f, Yzahyo, 0f); // transform.position; // 8.75 2.9
+        targetPosition = new Vector3(-8.75f, Yzahyo, 0f);
         distance = Vector3.Distance(startPosition, targetPosition);
 
     }

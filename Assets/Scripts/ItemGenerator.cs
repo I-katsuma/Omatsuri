@@ -9,11 +9,34 @@ public class ItemGenerator : MonoBehaviour
 
     [SerializeField] Transform plateBox;
 
-    public float num = 3f;
+    public float num = 3f; // お皿の間隔
+
+    int ranNum;
+    //int preNum = -1;
+
+    int GetRAndomValue(int oldNum)
+    {
+        int length = itemPrefabs.Length;
+        int newNum = Random.Range(0, length);
+
+        if(newNum == oldNum) // 古い番号が同じとき
+        {
+            int n = newNum + Random.Range(1, length);
+
+            return n < length ? n : n -length;
+        }
+        else
+        {
+            return newNum;
+        }
+    }
 
     private void Spawn()
     {
-        GameObject plate = Instantiate(itemPrefabs[0], transform.position, transform.rotation);
+        //ranNum = Random.Range(0, itemPrefabs.Length);
+        ranNum = GetRAndomValue(ranNum);
+
+        GameObject plate = Instantiate(itemPrefabs[ranNum], transform.position, transform.rotation);
         plate.transform.SetParent(plateBox);
     }
 
@@ -28,9 +51,8 @@ public class ItemGenerator : MonoBehaviour
 
     void Start()
     {
-        float num = GameManager.Instance.mainGameSpeed;
+        //float num = GameManager.Instance.mainGameSpeed;
         StartCoroutine("Generat");
     }
 
-    void Update() { }
 }

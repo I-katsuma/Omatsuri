@@ -544,6 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1787b04dde8a7ba41a1327e4fc7fc0d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowActive: 0
+  mainGameSpeed: 1
   gameState: 0
 --- !u!1 &931526675
 GameObject:
@@ -574,6 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16568e62c8ffa26438939994a461c0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneManagement: {fileID: 184967882}
 --- !u!4 &931526677
 Transform:
   m_ObjectHideFlags: 0
@@ -1261,11 +1264,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11486218, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11486218, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
       propertyPath: cutoutRange
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11486218, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
       propertyPath: maskTexture

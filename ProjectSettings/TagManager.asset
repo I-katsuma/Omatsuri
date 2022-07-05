@@ -55,3 +55,6 @@ TagManager:
   - name: Player
     uniqueID: 477199819
     locked: 0
+  - name: MEDETAI
+    uniqueID: 703177449
+    locked: 0

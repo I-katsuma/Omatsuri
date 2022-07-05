@@ -12,8 +12,17 @@ public class PlayerControl : MonoBehaviour
     public GameObject arrowPrefab;
     private float shotPower;
 
+    [SerializeField]
+    ZankiManager zankiManager;
+
+    [SerializeField]
+    Animator anim;
+
+    bool bigin;
+
     private void Start()
     {
+        bigin = false;
         shotPower = 0f;
     }
 
@@ -27,7 +36,7 @@ public class PlayerControl : MonoBehaviour
         m_inputMover.Disable();
     }
 
-    void Restrictions()
+    void Restrictions() // 移動範囲制限
     {
         if (transform.position.x > 5.55f)
         {
@@ -39,37 +48,89 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void Spawn()
+    void Spawn() // 矢の発射
     {
-        if (shotPower > 100f)
+        if (GameManager.Instance.gameState == GameManager.GAME_STATE.PLAYING)
         {
-            GameObject arrow = GameObject.Instantiate(
-                (arrowPrefab) as GameObject,
-                transform.position,
-                transform.rotation
-            );
-            arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * shotPower);
+            if (shotPower > 100f)
+            {
+                GameObject arrow = GameObject.Instantiate(
+                    (arrowPrefab) as GameObject,
+                    transform.position,
+                    transform.rotation
+                );
+                arrow.GetComponent<Rigidbody2D>().AddForce(transform.right * shotPower);
+                GameManager.Instance.arrowActive = true;
+                Debug.Log("arrowActive:" + GameManager.Instance.arrowActive);
+                zankiManager.RadeceLifeArrow(1);
+            }
+            shotPower = 0;
         }
-        shotPower = 0;
+        anim.SetBool("kamae", false);
     }
 
     private void Update()
     {
+        if (shotPower > 500)
+        {
+            shotPower = 500;
+        }
+
         m_movementValue = m_inputMover.ReadValue<Vector2>();
         transform.Translate(0, m_movementValue.y * m_fspeed, 0);
 
         var current = Keyboard.current;
         var spaceKey = current.spaceKey;
 
-        if (spaceKey.isPressed)
+        if (GameManager.Instance.arrowActive == false)
         {
+            if (spaceKey.wasPressedThisFrame)
+            {
+                OnPressBigin();
+            }
+            if (spaceKey.isPressed)
+            {
+                OnPressed();
+            }
+            if (spaceKey.wasReleasedThisFrame)
+            {
+                OnReleased();
+            }
+        }
+        else
+        {
+            shotPower = 0;
+        }
+    }
+
+    void OnPressBigin()
+    {
+        Debug.Log("キーが押された!");
+        anim.SetTrigger("Pressed");
+        bigin = true;
+        shotPower = 0;
+    }
+
+    void OnPressed()
+    {
+        if (bigin)
+        {
+            Debug.Log("キーが押されています");
             Debug.Log("shotPower : " + shotPower);
+            //anim.SetTrigger("Pressed");
+            anim.SetBool("kamae", true);
             shotPower += 1.2f;
         }
+    }
 
-        if (spaceKey.wasReleasedThisFrame)
+    void OnReleased()
+    {
+        if (bigin)
         {
-            Debug.Log("Released");
+            Debug.Log("キーから離れました");
+            bigin = false;
+            anim.SetTrigger("Shot");
+            //anim.SetBool("kamae", false);
             Spawn();
         }
     }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
 
+
+    public bool arrowActive;
+
     [Range(1f, 5f)]
     public float mainGameSpeed = 1f;
 
@@ -30,6 +33,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private void Start() 
     {
+        arrowActive = false;
         Init();
     }
 

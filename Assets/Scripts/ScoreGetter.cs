@@ -7,6 +7,8 @@ public class ScoreGetter : MonoBehaviour
 {
     [SerializeField] Text scoreText;
 
+    [SerializeField] GameObject[] getItems;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +18,11 @@ public class ScoreGetter : MonoBehaviour
     private void FixedUpdate() {
         scoreText.text =  ScoreManager.Instance.Score.ToString("d3");
 
+        if(ScoreManager.Instance.getItems.Count > 0)
+        {
+
+        }
     }
+
+
 }
