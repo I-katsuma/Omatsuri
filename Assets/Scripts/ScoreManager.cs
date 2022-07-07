@@ -8,6 +8,9 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     int score = 0;
 
     public List<GameObject> getItems = new List<GameObject>();
+    public List<Transform> getItemsTransform = new List<Transform>();
+    //public List<ItemCollider> getItemsId = new List<ItemCollider>(); 
+
 
     public int Score
     {

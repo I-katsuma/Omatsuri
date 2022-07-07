@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ItemMove : MonoBehaviour
 {
-    private float startTime, distance;
-    private Vector3 startPosition, targetPosition;
+    private float startTime,
+        distance;
+    private Vector3 startPosition,
+        targetPosition;
 
     public float Yzahyo = 2.9f;
 
@@ -16,12 +18,21 @@ public class ItemMove : MonoBehaviour
         startPosition = new Vector3(8.75f, Yzahyo, 0f); // transform.position; // 8.75 2.9
         targetPosition = new Vector3(-8.75f, Yzahyo, 0f);
         distance = Vector3.Distance(startPosition, targetPosition);
-
     }
 
-    private void OnDestroy() 
+    private void OnDestroy()
     {
-        Destroy(gameObject);    
+        Destroy(gameObject);
+        /*
+        if (this.transform.childCount == 2)
+        {
+            return;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        */
     }
 
     // Update is called once per frame
@@ -29,11 +40,11 @@ public class ItemMove : MonoBehaviour
     {
         float interpolatedValue = (Time.time - startTime) / distance;
 
-        transform.position = Vector3.Lerp(startPosition, targetPosition, interpolatedValue);       
+        transform.position = Vector3.Lerp(startPosition, targetPosition, interpolatedValue);
 
-        if(transform.position.x <= -8.75f)
+        if (transform.position.x <= -8.75f)
         {
-            OnDestroy();            
+            OnDestroy();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameProgress : MonoBehaviour
 {
@@ -16,12 +17,50 @@ public class GameProgress : MonoBehaviour
     [SerializeField]
     SceneManagement sceneManagement;
 
+    [SerializeField] Transform getItems;
+
+    [SerializeField] GameObject windowPanel;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.gameState = GameManager.GAME_STATE.PLAYING;
+        GameManager.Instance.gameState = GameManager.GAME_STATE.WAIT;
+        windowPanel.SetActive(true);
         HitTextObj.SetActive(false);
         MissTextObj.SetActive(false);
+    }
+
+
+    public void WindowPanelClose()
+    {
+        AudioManager.Instance.PlaySE(SESoundData.SE.ENTER2);
+        windowPanel.SetActive(false);
+        GameManager.Instance.gameState = GameManager.GAME_STATE.PLAYING;
+    }
+
+    /*
+    IEnumerator Transparent()
+    {
+        for (int i = 0; i < 255; i++)
+        {
+            windowPanel.GetComponent<Image>();   
+        }
+    }
+    */
+
+    private void Update() 
+    {
+        var current = Keyboard.current;
+        var spaceKey = current.spaceKey;
+
+        if(windowPanel.activeSelf)
+        {
+            if(spaceKey.isPressed)
+            {
+                //AudioManager.Instance.PlaySE(SESoundData.SE.ENTER2);
+                WindowPanelClose();
+            }            
+        }    
     }
 
     public void HitTextActive()
@@ -57,7 +96,7 @@ public class GameProgress : MonoBehaviour
         if (GameManager.Instance.arrowActive == true)
         {
             GameManager.Instance.arrowActive = false;
-            Debug.Log("GameOverChack, arrowActive : " + GameManager.Instance.arrowActive);
+            //Debug.Log("GameOverChack, arrowActive : " + GameManager.Instance.arrowActive);
         }
 
         //Debug.Log("GameOverCheck()");
@@ -65,7 +104,41 @@ public class GameProgress : MonoBehaviour
         if (zankiManager.arrowNum == 0)
         {
             Debug.Log("Game終了、リザルト画面へ");
+            //TODO 獲得した景品をリスト化、リザルトで並べて表示
+            //if(GetChild(getItems.transform))
+            //{Debug.Log("とれたよ");}
+            if(getItems.transform.childCount > 0)
+            {
+                Debug.Log("0以上あるよ");
+                GetChildTransform();           
+            }
+
             sceneManagement.GameToResult();
         }
     }
+
+    void GetChildTransform()
+    {
+
+        foreach (Transform childTrandform in getItems.transform)
+        {
+            Debug.Log(childTrandform.gameObject.name);
+        }
+    }
+
+    /*
+    bool GetChild(Transform _transform)
+    {
+        if(_transform.childCount <= 0){return false;}
+
+        for (int i = 0; i < getItems.childCount; i++)
+        {
+            ScoreManager.Instance.getItems.Add(
+                _transform.GetChild(i).gameObject.transform
+            );
+            GetChild(_transform.GetChild(i));
+        }
+        return true;
+    }
+    */
 }

@@ -21,6 +21,7 @@ public class TitleProgress : MonoBehaviour
 
         if(spaceKey.isPressed)
         {
+            AudioManager.Instance.PlaySE(SESoundData.SE.ENTER);
             sceneManagement.TitleToGame();
         }
     }

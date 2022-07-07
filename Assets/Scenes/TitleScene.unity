@@ -363,7 +363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME START
+  m_Text: PUSH SPACE KEY
 --- !u!222 &468518500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -416,6 +416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fb0bf8e5314f94f8d9512713d8eec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getItems: []
+  getItemsTransform: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +632,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 325, y: 75.5}
+  m_SizeDelta: {x: 450, y: 75.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020231369
 MonoBehaviour:
@@ -975,7 +977,22 @@ MonoBehaviour:
   - bgm: 1
     audioClip: {fileID: 8300000, guid: 00552d699c10d5b4abf4063bd33b1595, type: 3}
     volume: 1
-  sESoundDatas: []
+  sESoundDatas:
+  - se: 1
+    audioClip: {fileID: 8300000, guid: 373ee7df5cd23f942a7a84652e484077, type: 3}
+    volume: 1
+  - se: 0
+    audioClip: {fileID: 8300000, guid: 4faeb55caf533d14f9008e8d29819397, type: 3}
+    volume: 1
+  - se: 3
+    audioClip: {fileID: 8300000, guid: 1f6261903fb8f5544a8e2f09fb8ae430, type: 3}
+    volume: 1
+  - se: 2
+    audioClip: {fileID: 8300000, guid: baab005b8034e664894cce0dcce716d1, type: 3}
+    volume: 0.075
+  - se: 4
+    audioClip: {fileID: 8300000, guid: 726d9f08643df814c89af29b7cfd2b4f, type: 3}
+    volume: 0.075
   masterVolume: 1
   bgmMasterVolume: 1
   seMasterVolume: 1

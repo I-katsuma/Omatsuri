@@ -70,8 +70,9 @@ public class SESoundData
     {
         SHOT,
         HIT,
-        MISS,
+        ENTER,
         GOOD,
+        ENTER2,
     }
 
     public SE se;
