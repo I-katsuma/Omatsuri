@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-
+    public bool windowPanelFlag = true; 
 
     public bool arrowActive;
 

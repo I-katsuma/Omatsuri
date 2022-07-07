@@ -25,7 +25,16 @@ public class GameProgress : MonoBehaviour
     void Start()
     {
         GameManager.Instance.gameState = GameManager.GAME_STATE.WAIT;
-        windowPanel.SetActive(true);
+
+        if(GameManager.Instance.windowPanelFlag == true)
+        {
+            windowPanel.SetActive(true);
+        }
+        else
+        {
+            windowPanel.SetActive(false);
+            GameManager.Instance.gameState = GameManager.GAME_STATE.PLAYING;
+        }
         HitTextObj.SetActive(false);
         MissTextObj.SetActive(false);
     }
@@ -34,6 +43,7 @@ public class GameProgress : MonoBehaviour
     public void WindowPanelClose()
     {
         AudioManager.Instance.PlaySE(SESoundData.SE.ENTER2);
+        GameManager.Instance.windowPanelFlag = false;
         windowPanel.SetActive(false);
         GameManager.Instance.gameState = GameManager.GAME_STATE.PLAYING;
     }
