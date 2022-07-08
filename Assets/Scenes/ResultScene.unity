@@ -524,6 +524,7 @@ MonoBehaviour:
   resultScoreText: {fileID: 1798128255}
   OMIGOTOtext: {fileID: 298535558}
   GANBAtext: {fileID: 888826640}
+  nekoSerihu: {fileID: 64433455}
   Panelfade: {fileID: 105234479}
 --- !u!4 &267793197
 Transform:

@@ -14,6 +14,8 @@ public class ResultProgress : MonoBehaviour
     public GameObject OMIGOTOtext;
     public GameObject GANBAtext;
 
+    public Text nekoSerihu;
+
     public GameObject Panelfade; //フェードパネルの取得
 
     Image fadealpha; //フェードパネルのイメージ取得変数
@@ -34,9 +36,11 @@ public class ResultProgress : MonoBehaviour
         {
             AudioManager.Instance.PlaySE(SESoundData.SE.GOOD);
             OMIGOTOtext.SetActive(true);
+            nekoSerihu.text = "すごうでにゃん";
         }
         else
         {
+            nekoSerihu.text = "おしいにゃんねぇ";
             GANBAtext.SetActive(true);
         }
     }

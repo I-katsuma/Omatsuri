@@ -363,7 +363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PUSH SPACE KEY
+  m_Text: GAME START
 --- !u!222 &468518500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -546,6 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1787b04dde8a7ba41a1327e4fc7fc0d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  windowPanelFlag: 1
   arrowActive: 0
   mainGameSpeed: 1
   gameState: 0

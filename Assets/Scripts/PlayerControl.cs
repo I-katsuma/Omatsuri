@@ -38,13 +38,13 @@ public class PlayerControl : MonoBehaviour
 
     void Restrictions() // 移動範囲制限
     {
-        if (transform.position.x > 5.55f)
+        if (transform.position.x > 2f)
         {
-            transform.position = new Vector2(5.55f, transform.position.y);
+            transform.position = new Vector2(2f, transform.position.y);
         }
-        if (transform.position.x < -5.55f)
+        if (transform.position.x < -2f)
         {
-            transform.position = new Vector2(-5.55f, transform.position.y);
+            transform.position = new Vector2(-2f, transform.position.y);
         }
     }
 
@@ -78,7 +78,7 @@ public class PlayerControl : MonoBehaviour
             shotPower = 500;
         }
 
-        m_movementValue = m_inputMover.ReadValue<Vector2>();
+        m_movementValue = m_inputMover.ReadValue<Vector2>(); // 入力処理
         transform.Translate(0, m_movementValue.y * m_fspeed, 0);
 
         var current = Keyboard.current;
