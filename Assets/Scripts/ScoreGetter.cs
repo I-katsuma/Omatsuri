@@ -29,7 +29,7 @@ public class ScoreGetter : MonoBehaviour
     public void GetItemApper(int numId, int numScore)
     {
         Debug.Log("ゲットした景品のIDは " + numId + "で、スコアは " + numScore + "です");
-        GameObject getItem = Instantiate(getItemPrefab);
+        GameObject getItem = Instantiate(getItemPrefab, transform.position, transform.rotation);
         getItem.GetComponent<Image>().sprite = getItemsImageSprites[numId];
         getItem.GetComponent<GetItem>().thisScoreText.text = numScore.ToString();
         getItem.transform.SetParent(getItemPanel);

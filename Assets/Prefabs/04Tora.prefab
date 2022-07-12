@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: 4
-  thisScore: 150
+  thisScore: 180
 --- !u!70 &2048934796758424952
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

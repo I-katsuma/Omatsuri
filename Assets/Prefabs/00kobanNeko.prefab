@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: 0
-  thisScore: 100
+  thisScore: 120
 --- !u!1 &8617126014085133010
 GameObject:
   m_ObjectHideFlags: 0

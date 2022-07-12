@@ -17,9 +17,14 @@ public class TitleProgress : MonoBehaviour
     private void Update()
     {
         var current = Keyboard.current;
-        var spaceKey = current.spaceKey;
+        //var spaceKey = current.spaceKey;
 
-        if(spaceKey.isPressed)
+        if(current == null)
+        {
+            return;
+        }
+
+        if(current.spaceKey.isPressed)
         {
             AudioManager.Instance.PlaySE(SESoundData.SE.ENTER);
             sceneManagement.TitleToGame();

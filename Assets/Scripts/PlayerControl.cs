@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     public float m_fspeed = 0.01f;
 
     public GameObject arrowPrefab;
-    private float shotPower;
+    public float shotPower;
 
     [SerializeField]
     ZankiManager zankiManager;
@@ -48,7 +48,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void Spawn() // 矢の発射
+    public void Spawn() // 矢の発射
     {
         if (GameManager.Instance.gameState == GameManager.GAME_STATE.PLAYING)
         {
@@ -67,6 +67,7 @@ public class PlayerControl : MonoBehaviour
                 anim.SetBool("kamae", false);
                 anim.SetBool("arrowShot", false);
             }
+            anim.SetBool("arrowShot", false);
             shotPower = 0;
         }
     }
@@ -105,49 +106,51 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void OnPressBigin()
+    public void kamaeAnimMethod(bool flag)
     {
-        if (spacePressBigin == false)
+        if (!spacePressBigin)
         {
-            shotPower = 0;
-            Debug.Log("キーが押された!");
-            anim.SetBool("kamae", true);
-            //anim.SetTrigger("Pressed");
+            Debug.Log("KamaeMethod");
+            anim.SetBool("kamae", flag);
             spacePressBigin = true;
         }
     }
 
-    void OnPressed()
+    public void ArrowShotMethod()
     {
         if (spacePressBigin)
         {
-            Debug.Log("キーが押されています");
-            //Debug.Log("shotPower : " + shotPower);
-            shotPower += 1.2f;
-
-            /*
-            if (shotPower > 100f)
-            {
-                //anim.SetBool("kamae", true);
-            }
-            /*
-            else
-            {
-                anim.SetBool("kamae", false);
-                bigin = false;
-            }
-            */
+            Debug.Log("ArrowShotMethod");
+            anim.SetBool("arrowShot", true);
+            Spawn();
+            spacePressBigin = false;
         }
     }
 
-    void OnReleased()
+    void OnPressBigin() // 押下した
+    {
+        if (spacePressBigin == false)
+        {
+            shotPower = 0;
+            anim.SetBool("kamae", true);
+            spacePressBigin = true;
+        }
+    }
+
+    void OnPressed() // 押下中
     {
         if (spacePressBigin)
         {
-            Debug.Log("キーから離れました");
+            shotPower += 1.2f;
+        }
+    }
+
+    void OnReleased() // 解放
+    {
+        if (spacePressBigin)
+        {
             if (shotPower > 100f)
             {
-                //anim.SetTrigger("Shot");
                 anim.SetBool("arrowShot", true);
                 Spawn();
             }
@@ -155,21 +158,9 @@ public class PlayerControl : MonoBehaviour
             {
                 anim.SetBool("kamae", false);
             }
-
-            /*
-            if (anim.GetBool("kamae") == true)
-            {
-                anim.SetTrigger("Shot");
-                Spawn();
-            }
-            anim.SetBool("kamae", false);
-            bigin = false;
-            */
         }
         anim.SetBool("kamae", false);
         spacePressBigin = false;
-        Debug.Log("anim.kamaeBool : " + anim.GetBool("kamae"));
-        Debug.Log("spacePressBigin : " + spacePressBigin);
     }
 
     private void FixedUpdate()

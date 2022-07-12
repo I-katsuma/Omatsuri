@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    public bool windowPanelFlag = true; 
+    public bool windowPanelFlag = true; // ゲーム説明パネルのオンオフフラグ
 
-    public bool arrowActive;
+    public bool arrowActive; // 矢が発射中だとtrue
+
+    public bool touchPanelBool; // タッチパネルのオンオフ
 
     [Range(1f, 5f)]
     public float mainGameSpeed = 1f;

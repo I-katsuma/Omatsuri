@@ -13,6 +13,7 @@ public class ResultProgress : MonoBehaviour
 
     public GameObject OMIGOTOtext;
     public GameObject GANBAtext;
+    public GameObject APPAREtext;
 
     public Text nekoSerihu;
 
@@ -32,7 +33,13 @@ public class ResultProgress : MonoBehaviour
         GameManager.Instance.gameState = GameManager.GAME_STATE.RESULT;
         resultScoreText.text = ScoreManager.Instance.Score.ToString("d3");
 
-        if(ScoreManager.Instance.Score >= 500)
+        if(ScoreManager.Instance.Score >= 900)
+        {
+            AudioManager.Instance.PlaySE(SESoundData.SE.GOOD);
+            APPAREtext.SetActive(true);
+            nekoSerihu.text = "射的のてんさいにゃ";
+        }
+        else if(ScoreManager.Instance.Score >= 500)
         {
             AudioManager.Instance.PlaySE(SESoundData.SE.GOOD);
             OMIGOTOtext.SetActive(true);
@@ -52,7 +59,8 @@ public class ResultProgress : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
-    void FadeOut()
+    
+    void FadeOut() // buttonに付ける
     {
         alpha += 0.01f;
         fadealpha.color = new Color(0, 0, 0, alpha);
@@ -62,16 +70,16 @@ public class ResultProgress : MonoBehaviour
 
             OMIGOTOtext.SetActive(false);
             GANBAtext.SetActive(false);
+            APPAREtext.SetActive(false);
             ResultToTitle();
         }
     }
 
-    public void FadeOutStart()
+    public void FadeOutStart() // 
     {
         fadeout = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (fadeout == true)
@@ -85,7 +93,7 @@ public class ResultProgress : MonoBehaviour
         if (spaceKey.isPressed)
         {
             AudioManager.Instance.PlaySE(SESoundData.SE.ENTER);
-            //ResultToTitle();
+            ResultToTitle();
             FadeOutStart();
         }
     }

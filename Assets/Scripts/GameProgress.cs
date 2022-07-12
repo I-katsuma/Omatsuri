@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class GameProgress : MonoBehaviour
 {
     [SerializeField]
+    GameObject InputCanvas;
+
+    [SerializeField]
     GameObject HitTextObj;
 
     [SerializeField]
@@ -17,34 +20,56 @@ public class GameProgress : MonoBehaviour
     [SerializeField]
     SceneManagement sceneManagement;
 
-    [SerializeField] Transform getItems;
+    [SerializeField]
+    Transform getItems;
 
-    [SerializeField] GameObject windowPanel;
+    [SerializeField]
+    GameObject windowPanel;
+
+    bool touchBool;
 
     // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.gameState = GameManager.GAME_STATE.WAIT;
+        InputCanvas.SetActive(false);
 
-        if(GameManager.Instance.windowPanelFlag == true)
+        if (GameManager.Instance.windowPanelFlag == true) // 初回
         {
             windowPanel.SetActive(true);
+            if(GameManager.Instance.touchPanelBool)
+            {
+                InputCanvas.SetActive(true);
+            }
         }
-        else
+        else // 二週目
         {
             windowPanel.SetActive(false);
+            if(GameManager.Instance.touchPanelBool)
+            {
+                InputCanvas.SetActive(true);
+            }
+            else
+            {
+                InputCanvas.SetActive(false);
+            }
+            
             GameManager.Instance.gameState = GameManager.GAME_STATE.PLAYING;
         }
         HitTextObj.SetActive(false);
         MissTextObj.SetActive(false);
+        
     }
-
 
     public void WindowPanelClose()
     {
         AudioManager.Instance.PlaySE(SESoundData.SE.ENTER2);
         GameManager.Instance.windowPanelFlag = false;
         windowPanel.SetActive(false);
+        if(GameManager.Instance.touchPanelBool)
+        {
+            InputCanvas.SetActive(true);
+        }
         GameManager.Instance.gameState = GameManager.GAME_STATE.PLAYING;
     }
 
@@ -53,24 +78,24 @@ public class GameProgress : MonoBehaviour
     {
         for (int i = 0; i < 255; i++)
         {
-            windowPanel.GetComponent<Image>();   
+            windowPanel.GetComponent<Image>();
         }
     }
     */
 
-    private void Update() 
+    private void Update()
     {
         var current = Keyboard.current;
         var spaceKey = current.spaceKey;
 
-        if(windowPanel.activeSelf)
+        if (windowPanel.activeSelf)
         {
-            if(spaceKey.isPressed)
+            if (spaceKey.isPressed)
             {
                 //AudioManager.Instance.PlaySE(SESoundData.SE.ENTER2);
                 WindowPanelClose();
-            }            
-        }    
+            }
+        }
     }
 
     public void HitTextActive()
@@ -117,10 +142,10 @@ public class GameProgress : MonoBehaviour
             //TODO 獲得した景品をリスト化、リザルトで並べて表示
             //if(GetChild(getItems.transform))
             //{Debug.Log("とれたよ");}
-            if(getItems.transform.childCount > 0)
+            if (getItems.transform.childCount > 0)
             {
                 Debug.Log("0以上あるよ");
-                GetChildTransform();           
+                GetChildTransform();
             }
 
             sceneManagement.GameToResult();
@@ -129,7 +154,6 @@ public class GameProgress : MonoBehaviour
 
     void GetChildTransform()
     {
-
         foreach (Transform childTrandform in getItems.transform)
         {
             Debug.Log(childTrandform.gameObject.name);
