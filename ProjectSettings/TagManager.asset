@@ -58,3 +58,6 @@ TagManager:
   - name: MEDETAI
     uniqueID: 703177449
     locked: 0
+  - name: Slider
+    uniqueID: 3853785529
+    locked: 0

@@ -17,6 +17,8 @@ public class ResultProgress : MonoBehaviour
 
     public Text nekoSerihu;
 
+    public ResultSceneFade resultSceneFade;
+    /*
     public GameObject Panelfade; //フェードパネルの取得
 
     Image fadealpha; //フェードパネルのイメージ取得変数
@@ -24,11 +26,12 @@ public class ResultProgress : MonoBehaviour
     private float alpha; //パネルのalpha値取得変数
 
     private bool fadeout; //フェードアウトのフラグ変数
+    */
 
     void Start()
     {
-        fadealpha = Panelfade.GetComponent<Image>(); //パネルのイメージ取得
-        alpha = fadealpha.color.a; //パネルのalpha値を取得
+        //fadealpha = Panelfade.GetComponent<Image>(); //パネルのイメージ取得
+        //alpha = fadealpha.color.a; //パネルのalpha値を取得
 
         GameManager.Instance.gameState = GameManager.GAME_STATE.RESULT;
         resultScoreText.text = ScoreManager.Instance.Score.ToString("d3");
@@ -59,7 +62,7 @@ public class ResultProgress : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
-    
+    /*
     void FadeOut() // buttonに付ける
     {
         alpha += 0.01f;
@@ -79,22 +82,26 @@ public class ResultProgress : MonoBehaviour
     {
         fadeout = true;
     }
+    */
 
     void Update()
     {
+        /*
         if (fadeout == true)
         {
             FadeOut();
         }
+        */
 
         var current = Keyboard.current;
         var spaceKey = current.spaceKey;
 
         if (spaceKey.isPressed)
         {
-            AudioManager.Instance.PlaySE(SESoundData.SE.ENTER);
-            ResultToTitle();
-            FadeOutStart();
+            //AudioManager.Instance.PlaySE(SESoundData.SE.ENTER);
+            resultSceneFade.ResultToTitle();
+            //ResultToTitle();
+            //FadeOutStart();
         }
     }
 }

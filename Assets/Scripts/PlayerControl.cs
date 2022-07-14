@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
@@ -10,7 +11,11 @@ public class PlayerControl : MonoBehaviour
     public float m_fspeed = 0.01f;
 
     public GameObject arrowPrefab;
-    public float shotPower;
+
+    public Slider powerSlider;
+
+    public float shotPower; // 0-99 発射不可 100-500
+    private const float MaxShotPower = 500f; // 固定数値
 
     [SerializeField]
     ZankiManager zankiManager;
@@ -24,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     {
         spacePressBigin = false;
         shotPower = 0f;
+        powerSlider.value = shotPower;
     }
 
     private void OnEnable()
@@ -74,9 +80,11 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
+        powerSlider.transform.rotation = Camera.main.transform.rotation;
+
         if (shotPower > 500)
         {
-            shotPower = 500;
+            shotPower = MaxShotPower;
         }
 
         m_movementValue = m_inputMover.ReadValue<Vector2>(); // 入力処理
@@ -141,7 +149,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (spacePressBigin)
         {
-            shotPower += 1.2f;
+            //shotPower += 1.2f;
+            shotPower += 1.8f;
         }
     }
 
@@ -161,10 +170,12 @@ public class PlayerControl : MonoBehaviour
         }
         anim.SetBool("kamae", false);
         spacePressBigin = false;
+        shotPower = 0f;
     }
 
     private void FixedUpdate()
     {
         Restrictions();
+        powerSlider.value = shotPower;
     }
 }
