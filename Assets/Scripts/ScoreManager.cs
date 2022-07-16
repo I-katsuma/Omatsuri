@@ -7,9 +7,9 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     int maxScore = 999;
     int score = 0;
 
-    public List<GameObject> getItems = new List<GameObject>();
-    public List<Transform> getItemsTransform = new List<Transform>();
-    //public List<ItemCollider> getItemsId = new List<ItemCollider>(); 
+    // ゲットした景品のIDを記憶
+    public List<int> getIds = new List<int>();
+    public List<int> getScores = new List<int>();
 
 
     public int Score
@@ -43,5 +43,8 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     public void ScoreReset()
     {
         score = 0;
+        getIds.Clear();
+        getScores.Clear();
+
     }
 }

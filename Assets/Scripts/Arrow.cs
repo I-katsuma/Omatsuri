@@ -39,8 +39,9 @@ public class Arrow : MonoBehaviour
             numScore = other.gameObject.GetComponent<ItemCollider>().thisScore;
             scoreGetter.GetItemApper(numID, numScore);
 
-            //ScoreManager.Instance.getItemsId.Add(other.gameObject.GetComponent<ItemCollider>());
-
+            // ゲットした景品のIDとスコアをLISTに記憶
+            ScoreManager.Instance.getIds.Add(other.gameObject.GetComponent<ItemCollider>().itemId);
+            ScoreManager.Instance.getScores.Add(other.gameObject.GetComponent<ItemCollider>().thisScore);
             //myCollider2D.enabled = true; // 無効化
             //ScoreManager.Instance.getItemsId.Add(other.gameObject.GetComponent<ItemCollider>().itemId);
             //flagChange();

@@ -11,9 +11,11 @@ public class ItemMove : MonoBehaviour
 
     public float Yzahyo = 2.9f;
 
-    // Start is called before the first frame update
+    public ItemCollider itemCollider;
+
     void Start()
     {
+        itemCollider = GetComponent<ItemCollider>();
         startTime = Time.time;
         startPosition = new Vector3(8.75f, Yzahyo, 0f); // transform.position; // 8.75 2.9
         targetPosition = new Vector3(-8.75f, Yzahyo, 0f);
@@ -22,20 +24,16 @@ public class ItemMove : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(gameObject);
-        /*
-        if (this.transform.childCount == 2)
+        if (itemCollider.arrowCheck == true)
         {
-            return;
+            this.gameObject.SetActive(false);
         }
         else
         {
             Destroy(gameObject);
         }
-        */
     }
 
-    // Update is called once per frame
     void Update()
     {
         float interpolatedValue = (Time.time - startTime) / distance;

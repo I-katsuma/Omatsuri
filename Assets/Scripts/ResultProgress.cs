@@ -18,20 +18,47 @@ public class ResultProgress : MonoBehaviour
     public Text nekoSerihu;
 
     public ResultSceneFade resultSceneFade;
-    /*
-    public GameObject Panelfade; //フェードパネルの取得
 
-    Image fadealpha; //フェードパネルのイメージ取得変数
+    public Transform PrizeObjects; // ゲットした景品を並べる場所
 
-    private float alpha; //パネルのalpha値取得変数
+    // PanelA(スコア)
+    [SerializeField] GameObject ScorePanel;
+    [SerializeField] GameObject ObjectPanel;
+    [SerializeField] GameObject SerihuPanel;
 
-    private bool fadeout; //フェードアウトのフラグ変数
-    */
+    // PanelB(ランキング)
+    [SerializeField] GameObject RankingPanel;
+
+    // ボタン
+    [SerializeField] GameObject ResultButton;
+    [SerializeField] GameObject RankingButton;
+
+    void PanelA(bool x)
+    {
+        ScorePanel.SetActive(x);
+        ObjectPanel.SetActive(x);
+        SerihuPanel.SetActive(x);
+        // ランキングに移行するため
+        RankingButton.SetActive(x);
+    }
+
+    void PanelB(bool x)
+    {
+        RankingPanel.SetActive(x);
+        ResultButton.SetActive(x);
+    }
+
+    public void RankingBoardButton()
+    {
+        PanelB(true);
+        PanelA(false);
+    }
 
     void Start()
     {
-        //fadealpha = Panelfade.GetComponent<Image>(); //パネルのイメージ取得
-        //alpha = fadealpha.color.a; //パネルのalpha値を取得
+
+        PanelA(true);
+        PanelB(false);
 
         GameManager.Instance.gameState = GameManager.GAME_STATE.RESULT;
         resultScoreText.text = ScoreManager.Instance.Score.ToString("d3");
@@ -55,53 +82,39 @@ public class ResultProgress : MonoBehaviour
         }
     }
 
+    void ObjectsClear()
+    {
+        if(PrizeObjects.transform.childCount > 0)
+        {
+            foreach(Transform c in PrizeObjects.transform)
+            {
+                GameObject.Destroy(c.gameObject);
+            }
+        }
+    }
+
+
     public void ResultToTitle()
     {
         Debug.Log("ResultToTitle実行");
         ScoreManager.Instance.ScoreReset();
+        ObjectsClear();
+
         SceneManager.LoadSceneAsync(0);
     }
 
-    /*
-    void FadeOut() // buttonに付ける
-    {
-        alpha += 0.01f;
-        fadealpha.color = new Color(0, 0, 0, alpha);
-        if (alpha >= 1)
-        {
-            fadeout = false;
-
-            OMIGOTOtext.SetActive(false);
-            GANBAtext.SetActive(false);
-            APPAREtext.SetActive(false);
-            ResultToTitle();
-        }
-    }
-
-    public void FadeOutStart() // 
-    {
-        fadeout = true;
-    }
-    */
+    
 
     void Update()
     {
-        /*
-        if (fadeout == true)
-        {
-            FadeOut();
-        }
-        */
-
         var current = Keyboard.current;
         var spaceKey = current.spaceKey;
 
         if (spaceKey.isPressed)
         {
-            //AudioManager.Instance.PlaySE(SESoundData.SE.ENTER);
+            ScoreManager.Instance.ScoreReset();
+            ObjectsClear();
             resultSceneFade.ResultToTitle();
-            //ResultToTitle();
-            //FadeOutStart();
         }
     }
 }

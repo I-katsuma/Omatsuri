@@ -150,7 +150,7 @@ public class PlayerControl : MonoBehaviour
         if (spacePressBigin)
         {
             //shotPower += 1.2f;
-            shotPower += 1.8f;
+            shotPower += 1.4f;
         }
     }
 

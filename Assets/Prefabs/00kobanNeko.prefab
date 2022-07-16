@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Yzahyo: 2.9
+  itemCollider: {fileID: 0}
 --- !u!114 &6371166854920473050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 0
   thisScore: 120
+  arrowCheck: 0
 --- !u!1 &8617126014085133010
 GameObject:
   m_ObjectHideFlags: 0
