@@ -6,23 +6,54 @@ public class ItemCollider : MonoBehaviour
 {
     public int itemId;
     public int thisScore;
-    
-    public bool arrowCheck;
 
-    private void Start() 
+    //public bool arrowCheck;
+
+    [SerializeField]
+    GameObject thisObject;
+    [SerializeField] Collider2D myCollider;
+
+    private void Start()
     {
-        arrowCheck = false;
+        //arrowCheck = false;
+        myCollider = GetComponent<Collider2D>();
+
+        if (itemId == 0)
+        {
+            //　出現規制フラグオン
+            Debug.Log("GoldCatFlagオン");
+            GameManager.Instance.GoldCatFlag = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (itemId == 0)
+        {
+            GameManager.Instance.GoldCatFlag = false; // 出現ﾌﾗｸﾞオフ
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (this.transform.childCount == 2)
+        other.gameObject.transform.SetParent(thisObject.transform);
+
+        if (thisObject.transform.childCount == 3)
         {
             ScoreManager.Instance.Score += thisScore;
-            arrowCheck = true;
-            //Debug.Log("現在のSCORE : " + ScoreManager.Instance.Score);
+
+            if (itemId == 0)
+            {
+                Debug.Log("GetGoldCatオン");
+                GameManager.Instance.GetGoldCat = true;
+                
+            }
+        }
+
+        if(other.gameObject.tag == "Arrow")
+        {
+            Debug.Log("Collider無効化");
+            myCollider.enabled = false;
         }
     }
-
-    private void Update() { }
 }

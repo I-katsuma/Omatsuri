@@ -11,11 +11,12 @@ public class ItemMove : MonoBehaviour
 
     public float Yzahyo = 2.9f;
 
-    public ItemCollider itemCollider;
+    //public ItemCollider itemCollider;
+    public 
 
     void Start()
     {
-        itemCollider = GetComponent<ItemCollider>();
+        //itemCollider = GetComponent<ItemCollider>();
         startTime = Time.time;
         startPosition = new Vector3(8.75f, Yzahyo, 0f); // transform.position; // 8.75 2.9
         targetPosition = new Vector3(-8.75f, Yzahyo, 0f);
@@ -24,12 +25,14 @@ public class ItemMove : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (itemCollider.arrowCheck == true)
+        //if (itemCollider.arrowCheck == true) // 矢が刺さった場合は非アクティブ化
+        if(this.gameObject.transform.childCount == 3)
         {
             this.gameObject.SetActive(false);
         }
         else
         {
+            // それ以外はデストロイ
             Destroy(gameObject);
         }
     }

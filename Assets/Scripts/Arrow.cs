@@ -21,6 +21,13 @@ public class Arrow : MonoBehaviour
         gameProgress = GameObject.Find("GameProgress").GetComponent<GameProgress>();
     }
 
+
+    public void HitColliderCheck(Collider2D collier)
+    {
+        
+    }
+
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Item")
@@ -42,9 +49,7 @@ public class Arrow : MonoBehaviour
             // ゲットした景品のIDとスコアをLISTに記憶
             ScoreManager.Instance.getIds.Add(other.gameObject.GetComponent<ItemCollider>().itemId);
             ScoreManager.Instance.getScores.Add(other.gameObject.GetComponent<ItemCollider>().thisScore);
-            //myCollider2D.enabled = true; // 無効化
-            //ScoreManager.Instance.getItemsId.Add(other.gameObject.GetComponent<ItemCollider>().itemId);
-            //flagChange();
+
         }
     }
 

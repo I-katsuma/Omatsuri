@@ -6,7 +6,7 @@ public class ZankiManager : MonoBehaviour
 {
     [SerializeField]
     GameObject arrowPrefab;
-    public int arrowNum = 5;
+    public int arrowNum;
     private const int MaxArrow = 5;
     void Start()
     {

@@ -33,6 +33,8 @@ public class ResultProgress : MonoBehaviour
     [SerializeField] GameObject ResultButton;
     [SerializeField] GameObject RankingButton;
 
+    private bool rankingPanelFlag;
+
     void PanelA(bool x)
     {
         ScorePanel.SetActive(x);
@@ -61,6 +63,10 @@ public class ResultProgress : MonoBehaviour
         PanelB(false);
 
         GameManager.Instance.gameState = GameManager.GAME_STATE.RESULT;
+        
+        GameManager.Instance.GoldCatFlag = false;
+        GameManager.Instance.GetGoldCat = false;
+
         resultScoreText.text = ScoreManager.Instance.Score.ToString("d3");
 
         if(ScoreManager.Instance.Score >= 900)
@@ -110,11 +116,21 @@ public class ResultProgress : MonoBehaviour
         var current = Keyboard.current;
         var spaceKey = current.spaceKey;
 
-        if (spaceKey.isPressed)
+        if (spaceKey.wasPressedThisFrame)
         {
-            ScoreManager.Instance.ScoreReset();
-            ObjectsClear();
-            resultSceneFade.ResultToTitle();
+            if(!rankingPanelFlag)
+            {
+                RankingBoardButton();
+                rankingPanelFlag = true;
+            }
+            else if(rankingPanelFlag)
+            {
+                ScoreManager.Instance.ScoreReset();
+                ObjectsClear();
+                resultSceneFade.ResultToTitle();                
+                rankingPanelFlag = false;
+            }
+
         }
     }
 }

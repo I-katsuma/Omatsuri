@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     public InputAction m_inputMover;
     Vector2 m_movementValue;
-    public float m_fspeed = 0.01f;
+    public float m_fspeed = 0.2f;
 
     public GameObject arrowPrefab;
 
@@ -150,7 +150,8 @@ public class PlayerControl : MonoBehaviour
         if (spacePressBigin)
         {
             //shotPower += 1.2f;
-            shotPower += 1.4f;
+            //shotPower += 1.4f;
+            shotPower += 2f;
         }
     }
 

@@ -15,6 +15,7 @@ public class RankingManager : MonoBehaviour
 
     [SerializeField]
     private Text _rankingText;
+    private string rankingName = "sushiShotRanking2";
 
     ///
     //  ユーザー名を更新
@@ -58,7 +59,7 @@ public class RankingManager : MonoBehaviour
             {
                 new StatisticUpdate
                 {
-                    StatisticName = "sushiShotRankng", //ランキング名(統計情報名)
+                    StatisticName = rankingName, //ランキング名(統計情報名)
                     Value = int.Parse(_scoreText.text), //スコア(int)
                 }
             }
@@ -93,7 +94,7 @@ public class RankingManager : MonoBehaviour
         //GetLeaderboardRequestのインスタンスを生成
         var request = new GetLeaderboardRequest
         {
-            StatisticName = "sushiShotRankng", //ランキング名(統計情報名)
+            StatisticName = rankingName, //ランキング名(統計情報名)
             StartPosition = 0, //何位以降のランキングを取得するか
             MaxResultsCount = 5 //ランキングデータを何件取得するか(最大100)
         };
@@ -114,7 +115,7 @@ public class RankingManager : MonoBehaviour
         {
             _rankingText.text +=
                 //$"\n順位 : {entry.Position + 1}, スコア : {entry.StatValue}, 名前 : {entry.DisplayName}, ID : {entry.PlayFabId}";
-        $"\nRANK : {entry.Position + 1}, SCORE : {entry.StatValue}, NAME : {entry.DisplayName}";
+            $"\nRANK : {entry.Position + 1}, SCORE : {entry.StatValue}, NAME : {entry.DisplayName}";
 
         }
     }

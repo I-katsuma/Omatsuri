@@ -967,8 +967,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -80, y: 155}
-  m_SizeDelta: {x: 160, y: 40}
+  m_AnchoredPosition: {x: -85, y: 155}
+  m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293334095
 MonoBehaviour:
@@ -3691,7 +3691,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!224 &1350016469
 RectTransform:
@@ -4077,10 +4077,10 @@ RectTransform:
   m_Father: {fileID: 26270571}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -230, y: -400}
+  m_SizeDelta: {x: 730, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552553381
 MonoBehaviour:
@@ -4096,7 +4096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prisePrefab: {fileID: 7624835581201354718, guid: 532429441ce9faa4f86446baa7829ed5, type: 3}
   prizeSprites:
-  - {fileID: 21300000, guid: 38f1f494165a9be47a9d9d0c257e009e, type: 3}
+  - {fileID: 21300000, guid: a213cad8c087bb24993c5d6084d21185, type: 3}
   - {fileID: 21300000, guid: db0a1c6789db0214a936a82a120f4b9f, type: 3}
   - {fileID: 21300000, guid: b8aa51079e78881488f9b98adc714e6a, type: 3}
   - {fileID: 21300000, guid: e8480f12f310f264c90f131e15e0cfe1, type: 3}
@@ -4104,12 +4104,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 59f383d0c5b171c4cabddefedca0b929, type: 3}
   - {fileID: 21300000, guid: 09c98905be3a4ce45b2d8112e5bb4899, type: 3}
   - {fileID: 21300000, guid: 289e9de954c6cdf438c45e1febfc4f08, type: 3}
-  - {fileID: 21300000, guid: a213cad8c087bb24993c5d6084d21185, type: 3}
+  - {fileID: 21300000, guid: 38f1f494165a9be47a9d9d0c257e009e, type: 3}
   - {fileID: 21300000, guid: 834930ea706bd364c981a957dcfceaf2, type: 3}
   - {fileID: 21300000, guid: 67bad712051b7b2409a356430ccc79a7, type: 3}
   - {fileID: 21300000, guid: b255cbaba0a3bea4a88fabaf15d8043c, type: 3}
   - {fileID: 21300000, guid: c22245cf1a5e00a46b299a870c351a10, type: 3}
-  - {fileID: 21300000, guid: 119ada249a5acb04e89fe702ebe5815a, type: 3}
+  - {fileID: 21300000, guid: 73396ff58877a284695c16d224e0a843, type: 3}
   - {fileID: 21300000, guid: 49f9990983543264fafaced488fda273, type: 3}
   - {fileID: 21300000, guid: 248d9906539e4bc44adfaa3910561e9a, type: 3}
 --- !u!114 &1552553382
@@ -4347,8 +4347,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 155}
-  m_SizeDelta: {x: 160, y: 40}
+  m_AnchoredPosition: {x: 85, y: 155}
+  m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1671772587
 MonoBehaviour:

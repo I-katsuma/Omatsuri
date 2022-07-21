@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3173791148802796380}
   - component: {fileID: 3315085252440993621}
   - component: {fileID: -1224733287275300301}
-  - component: {fileID: 6596348115514003668}
+  - component: {fileID: 1408710070387365188}
   m_Layer: 0
   m_Name: ArrowShot
   m_TagString: Arrow
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameProgress: {fileID: 0}
   scoreGetter: {fileID: 0}
---- !u!70 &6596348115514003668
-CapsuleCollider2D:
+--- !u!58 &1408710070387365188
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -135,6 +135,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.59857893, y: 0.03411558}
-  m_Size: {x: 0.18256612, y: 0.35624054}
-  m_Direction: 0
+  m_Offset: {x: 0.67, y: 0.033}
+  serializedVersion: 2
+  m_Radius: 0.01

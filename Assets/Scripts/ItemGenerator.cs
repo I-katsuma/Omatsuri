@@ -5,25 +5,25 @@ using UnityEngine;
 public class ItemGenerator : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] itemPrefabs;
+    GameObject[] itemPrefabs; // 生成する景品's
 
-    [SerializeField] Transform plateBox;
+    [SerializeField]
+    Transform plateBox; // 生成された景品たちの格納場所
 
-    public float num = 3f; // お皿の間隔
+    public float _osaraNum = 3f; // お皿の間隔
 
-    int ranNum;
-    //int preNum = -1;
+    int ranNum; // ランダム数字変数
 
     int GetRAndomValue(int oldNum)
     {
         int length = itemPrefabs.Length;
         int newNum = Random.Range(0, length);
 
-        if(newNum == oldNum) // 古い番号が同じとき
+        if (newNum == oldNum) // 古い番号が同じとき
         {
             int n = newNum + Random.Range(1, length);
 
-            return n < length ? n : n -length;
+            return n < length ? n : n - length;
         }
         else
         {
@@ -36,6 +36,12 @@ public class ItemGenerator : MonoBehaviour
         //ranNum = Random.Range(0, itemPrefabs.Length);
         ranNum = GetRAndomValue(ranNum);
 
+        if (GameManager.Instance.GoldCatFlag || GameManager.Instance.GetGoldCat)
+        {
+            Debug.Log("実行");
+            ranNum = Random.Range(1, itemPrefabs.Length);
+        }
+        
         GameObject plate = Instantiate(itemPrefabs[ranNum], transform.position, transform.rotation);
         plate.transform.SetParent(plateBox);
     }
@@ -45,14 +51,14 @@ public class ItemGenerator : MonoBehaviour
         while (true)
         {
             Spawn();
-            yield return new WaitForSeconds(num);
+            yield return new WaitForSeconds(_osaraNum);
         }
     }
 
     void Start()
     {
         //float num = GameManager.Instance.mainGameSpeed;
+        GameManager.Instance.GoldCatFlag = false;
         StartCoroutine("Generat");
     }
-
 }
